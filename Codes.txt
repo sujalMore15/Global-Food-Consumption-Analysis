@@ -1,0 +1,598 @@
+# 🌍 GLOBAL FOOD CONSUMPTION — POWER BI DAX CODE FILE
+
+# ============================================================
+# 1. CORE KPI MEASURES
+# ============================================================
+
+# Total Food Consumption
+
+```DAX
+Total Food Consumption =
+SUM('Food Consumption'[Consumption])
+```
+
+# Average Food Consumption
+
+```DAX
+Average Food Consumption =
+AVERAGE('Food Consumption'[Consumption])
+```
+
+# Maximum Consumption
+
+```DAX
+Maximum Consumption =
+MAX('Food Consumption'[Consumption])
+```
+
+# Minimum Consumption
+
+```DAX
+Minimum Consumption =
+MIN('Food Consumption'[Consumption])
+```
+
+# Count of Countries
+
+```DAX
+Count of Countries =
+DISTINCTCOUNT('Food Consumption'[Country])
+```
+
+# Count of Food Categories
+
+```DAX
+Count of Food Categories =
+DISTINCTCOUNT('Food Consumption'[Food Category])
+```
+
+# Count of Areas
+
+```DAX
+Count of Areas =
+DISTINCTCOUNT('Food Consumption'[Area])
+```
+
+# Count of Regions
+
+```DAX
+Count of Regions =
+DISTINCTCOUNT('Food Consumption'[Region])
+```
+
+# ============================================================
+# 2. ANALYSIS BY YEAR
+# ============================================================
+
+# Total Consumption by Year
+
+```DAX
+Total Consumption by Year =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Year]
+    )
+)
+```
+
+# ============================================================
+# 3. ANALYSIS BY REGION
+# ============================================================
+
+# Total Consumption by Region
+
+```DAX
+Total Consumption by Region =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Region]
+    )
+)
+```
+
+# Country Count by Region
+
+```DAX
+Country Count by Region =
+CALCULATE(
+    [Count of Countries],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Region]
+    )
+)
+```
+
+# ============================================================
+# 4. ANALYSIS BY INCOME GROUP
+# ============================================================
+
+# Total Consumption by Income Group
+
+```DAX
+Total Consumption by Income Group =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Income Group]
+    )
+)
+```
+
+# Country Count by Income Group
+
+```DAX
+Country Count by Income Group =
+CALCULATE(
+    [Count of Countries],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Income Group]
+    )
+)
+```
+
+# Average Consumption by Income Group
+
+```DAX
+Average Consumption by Income Group =
+CALCULATE(
+    [Average Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Income Group]
+    )
+)
+```
+
+# ============================================================
+# 5. ANALYSIS BY AREA / COUNTRY
+# ============================================================
+
+# Total Consumption by Area
+
+```DAX
+Total Consumption by Area =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Area]
+    )
+)
+```
+
+# Average Consumption by Area
+
+```DAX
+Average Consumption by Area =
+CALCULATE(
+    [Average Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Area]
+    )
+)
+```
+
+# Country Consumption
+
+```DAX
+Country Consumption =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Country]
+    )
+)
+```
+
+# ============================================================
+# 6. FOOD CATEGORY ANALYSIS
+# ============================================================
+
+# Total Consumption by Food Category
+
+```DAX
+Total Consumption by Food Category =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Food Category]
+    )
+)
+```
+
+# Average Consumption by Food Category
+
+```DAX
+Average Consumption by Food Category =
+CALCULATE(
+    [Average Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Food Category]
+    )
+)
+```
+
+# ============================================================
+# 7. SELECTED VALUE / DYNAMIC DISPLAY MEASURES
+# ============================================================
+
+# Selected Year
+
+```DAX
+Selected Year =
+SELECTEDVALUE(
+    'Food Consumption'[Year],
+    "All Years"
+)
+```
+
+# Selected Country
+
+```DAX
+Selected Country =
+SELECTEDVALUE(
+    'Food Consumption'[Country],
+    "All Countries"
+)
+```
+
+# Selected Area
+
+```DAX
+Selected Area =
+SELECTEDVALUE(
+    'Food Consumption'[Area],
+    "All Areas"
+)
+```
+
+# Selected Region
+
+```DAX
+Selected Region =
+SELECTEDVALUE(
+    'Food Consumption'[Region],
+    "All Regions"
+)
+```
+
+# Selected Income Group
+
+```DAX
+Selected Income Group =
+SELECTEDVALUE(
+    'Food Consumption'[Income Group],
+    "All Income Groups"
+)
+```
+
+# Selected Food Category
+
+```DAX
+Selected Food Category =
+SELECTEDVALUE(
+    'Food Consumption'[Food Category],
+    "All Categories"
+)
+```
+
+# ============================================================
+# 8. DYNAMIC DASHBOARD TITLE MEASURES
+# ============================================================
+
+# Dynamic Year Title
+
+```DAX
+Dynamic Year Title =
+"Food Consumption - " &
+[Selected Year]
+```
+
+# Dynamic Country Title
+
+```DAX
+Dynamic Country Title =
+"Food Consumption - " &
+[Selected Country]
+```
+
+# Dynamic Income Group Title
+
+```DAX
+Dynamic Income Group Title =
+"Food Consumption - " &
+[Selected Income Group]
+```
+
+# Dynamic Area Title
+
+```DAX
+Dynamic Area Title =
+"Food Consumption - " &
+[Selected Area]
+```
+
+# ============================================================
+# 9. PERCENTAGE / CONTRIBUTION MEASURES
+# ============================================================
+
+# Region Contribution %
+
+```DAX
+Region Contribution % =
+DIVIDE(
+    [Total Food Consumption],
+    CALCULATE(
+        [Total Food Consumption],
+        ALL('Food Consumption'[Region])
+    ),
+    0
+)
+```
+
+# Income Group Contribution %
+
+```DAX
+Income Group Contribution % =
+DIVIDE(
+    [Total Food Consumption],
+    CALCULATE(
+        [Total Food Consumption],
+        ALL('Food Consumption'[Income Group])
+    ),
+    0
+)
+```
+
+# Area Contribution %
+
+```DAX
+Area Contribution % =
+DIVIDE(
+    [Total Food Consumption],
+    CALCULATE(
+        [Total Food Consumption],
+        ALL('Food Consumption'[Area])
+    ),
+    0
+)
+```
+
+# Food Category Contribution %
+
+```DAX
+Food Category Contribution % =
+DIVIDE(
+    [Total Food Consumption],
+    CALCULATE(
+        [Total Food Consumption],
+        ALL('Food Consumption'[Food Category])
+    ),
+    0
+)
+```
+
+# ============================================================
+# 10. TIME INTELLIGENCE MEASURES
+# ============================================================
+
+# Previous Year Consumption
+
+```DAX
+Previous Year Consumption =
+CALCULATE(
+    [Total Food Consumption],
+    DATEADD(
+        'Food Consumption'[Year],
+        -1,
+        YEAR
+    )
+)
+```
+
+# Year-over-Year Change
+
+```DAX
+YoY Change =
+[Total Food Consumption] -
+[Previous Year Consumption]
+```
+
+# Year-over-Year Growth %
+
+```DAX
+YoY Growth % =
+DIVIDE(
+    [YoY Change],
+    [Previous Year Consumption],
+    0
+)
+```
+
+# ============================================================
+# 11. TOP COUNTRY / AREA ANALYSIS
+# ============================================================
+
+# Rank Area by Consumption
+
+```DAX
+Area Consumption Rank =
+RANKX(
+    ALL('Food Consumption'[Area]),
+    [Total Food Consumption],
+    ,
+    DESC,
+    DENSE
+)
+```
+
+# Rank Country by Consumption
+
+```DAX
+Country Consumption Rank =
+RANKX(
+    ALL('Food Consumption'[Country]),
+    [Total Food Consumption],
+    ,
+    DESC,
+    DENSE
+)
+```
+
+# ============================================================
+# 12. TOP N ANALYSIS
+# ============================================================
+
+# Top 5 Area Flag
+
+```DAX
+Top 5 Area Flag =
+IF(
+    [Area Consumption Rank] <= 5,
+    1,
+    0
+)
+```
+
+# Top 10 Country Flag
+
+```DAX
+Top 10 Country Flag =
+IF(
+    [Country Consumption Rank] <= 10,
+    1,
+    0
+)
+```
+
+# ============================================================
+# 13. KPI DISPLAY FORMATTING
+# ============================================================
+
+# Total Consumption in Billions
+
+```DAX
+Total Consumption (Bn) =
+DIVIDE(
+    [Total Food Consumption],
+    1000000000,
+    0
+)
+```
+
+# Total Consumption in Millions
+
+```DAX
+Total Consumption (Mn) =
+DIVIDE(
+    [Total Food Consumption],
+    1000000,
+    0
+)
+```
+
+# Average Consumption in Thousands
+
+```DAX
+Average Consumption (K) =
+DIVIDE(
+    [Average Food Consumption],
+    1000,
+    0
+)
+```
+
+# ============================================================
+# 14. DATA QUALITY / CHECK MEASURES
+# ============================================================
+
+# Blank Consumption Count
+
+```DAX
+Blank Consumption Count =
+CALCULATE(
+    COUNTROWS('Food Consumption'),
+    ISBLANK('Food Consumption'[Consumption])
+)
+```
+
+# Blank Country Count
+
+```DAX
+Blank Country Count =
+CALCULATE(
+    COUNTROWS('Food Consumption'),
+    ISBLANK('Food Consumption'[Country])
+)
+```
+
+# Blank Area Count
+
+```DAX
+Blank Area Count =
+CALCULATE(
+    COUNTROWS('Food Consumption'),
+    ISBLANK('Food Consumption'[Area])
+)
+```
+
+# ============================================================
+# 15. OPTIONAL SUMMARY MEASURES
+# ============================================================
+
+# Total Rows
+
+```DAX
+Total Rows =
+COUNTROWS('Food Consumption')
+```
+
+# Unique Country-Year Combinations
+
+```DAX
+Country Year Combinations =
+COUNTROWS(
+    SUMMARIZE(
+        'Food Consumption',
+        'Food Consumption'[Country],
+        'Food Consumption'[Year]
+    )
+)
+```
+
+# ============================================================
+# IMPORTANT
+# ============================================================
+
+# If your Power BI table is NOT named:
+# 'Food Consumption'
+#
+# Replace:
+# 'Food Consumption'
+#
+# with your actual table name.
+#
+# Also replace:
+# [Consumption]
+# [Country]
+# [Area]
+# [Region]
+# [Income Group]
+# [Food Category]
+# [Year]
+#
+# with the exact column names from your Power BI Fields pane.
+#
+# Not every measure is required on every dashboard page.
+# Use the measures relevant to the visual being created.
