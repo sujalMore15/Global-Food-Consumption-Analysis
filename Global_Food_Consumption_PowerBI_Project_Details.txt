@@ -1,0 +1,1352 @@
+# 🌍 Global Food Consumption Intelligence Dashboard | Power BI
+
+## 📌 Project Overview
+
+**Global Food Consumption Intelligence Dashboard** is an interactive Business Intelligence and Data Analytics project developed using **Microsoft Power BI**.
+
+The project analyzes global food consumption across **countries, areas, regions, income groups, food categories, and years**. The objective is to transform raw food-consumption data into an interactive dashboard that helps users identify consumption patterns, compare geographical and income-based differences, analyze yearly trends, and quickly identify important KPIs.
+
+The project demonstrates an end-to-end Power BI workflow:
+
+```text
+Raw Dataset
+    ↓
+Data Import
+    ↓
+Data Cleaning & Transformation
+    ↓
+Data Modeling
+    ↓
+DAX Measures
+    ↓
+Interactive Visualizations
+    ↓
+Dashboard
+    ↓
+Business Insights
+```
+
+---
+
+# 🎯 Project Objectives
+
+The main objectives of this project were:
+
+- Analyze total global food consumption.
+- Compare food consumption across countries and areas.
+- Analyze consumption across geographical regions.
+- Compare consumption between different income groups.
+- Analyze consumption by food category.
+- Identify high-consumption countries/areas.
+- Analyze total consumption over time.
+- Understand yearly consumption trends.
+- Create interactive filters using Power BI slicers.
+- Build KPI cards for quick decision-making.
+- Convert raw data into meaningful business intelligence insights.
+- Present the analysis through an interactive and visually engaging dashboard.
+
+---
+
+# 🧩 Business Problem
+
+Raw food-consumption datasets can contain a large number of countries, categories, years, regions, and income classifications. Looking at the raw table alone makes it difficult to identify patterns.
+
+This project solves that problem by providing an interactive dashboard where users can answer questions such as:
+
+- Which country has the highest consumption?
+- What is the total food consumption?
+- How does consumption vary by region?
+- How does consumption vary by income group?
+- Which areas contribute the most to total consumption?
+- Which food categories have the highest consumption?
+- How does consumption change from year to year?
+- How many countries are represented?
+- How many food categories are available?
+- What is the average food consumption?
+- What happens to the analysis when a specific year, area, or income group is selected?
+
+---
+
+# 🛠️ Tools & Technologies
+
+| Tool / Technology | Purpose |
+|---|---|
+| **Microsoft Power BI** | Dashboard development, analysis and visualization |
+| **Power Query** | Data cleaning and transformation |
+| **DAX** | Measures and analytical calculations |
+| **Power BI Data Model** | Organizing analytical fields and relationships |
+| **Power BI Slicers** | Interactive filtering |
+| **Power BI Visuals** | Data visualization and storytelling |
+| **Bing Maps / Map Visual** | Geographical analysis |
+
+### Core Skills Demonstrated
+
+```text
+Power BI
+Power Query
+DAX
+Data Cleaning
+Data Transformation
+Data Modeling
+Data Visualization
+KPI Development
+Interactive Reporting
+Business Intelligence
+Time-Series Analysis
+Geographical Analysis
+Comparative Analysis
+Data Storytelling
+```
+
+---
+
+# 📂 Dataset Structure
+
+The dashboard uses fields related to:
+
+```text
+Year
+Country
+Area
+Region
+Income Group
+Food Category
+Consumption
+Area Code
+```
+
+These fields are used as dimensions and measures throughout the dashboard.
+
+### Main analytical dimensions
+
+```text
+Year
+├── 2010
+├── 2011
+├── 2012
+├── ...
+└── 2021
+
+Income Group
+├── High income
+├── Low income
+├── Lower middle income
+└── Upper middle income
+
+Geographical Analysis
+├── Country
+├── Area
+└── Region
+
+Food Analysis
+└── Food Category
+```
+
+> **Note:** If your original dataset uses slightly different column names, replace the names in the DAX examples below with the exact names shown in your Power BI Fields pane.
+
+---
+
+# 🔄 Data Analytics Workflow
+
+## 1. Data Import
+
+The dataset was imported into **Microsoft Power BI Desktop**.
+
+The first stage involved examining the available fields and determining which columns could be used for:
+
+- Dimensions
+- Filters
+- Measures
+- KPIs
+- Geographic analysis
+- Time-series analysis
+- Category-level analysis
+
+---
+
+# 🧹 2. Data Cleaning & Transformation
+
+Data preparation was performed using **Power Query**.
+
+The transformation stage focused on preparing the raw data for reliable analysis.
+
+Typical preparation steps included:
+
+```text
+1. Open Power Query
+2. Review column names
+3. Check data types
+4. Identify numerical fields
+5. Identify categorical fields
+6. Prepare Year as a time field
+7. Prepare Area/Country fields
+8. Prepare Region fields
+9. Prepare Income Group fields
+10. Prepare Food Category fields
+11. Check missing/inconsistent values
+12. Validate the consumption field
+13. Apply transformations
+14. Close & Apply
+```
+
+The purpose of this stage was to ensure that the dataset could be correctly aggregated and filtered inside Power BI.
+
+---
+
+# 🧮 3. Data Modeling
+
+After transformation, the data was loaded into the Power BI data model.
+
+The main analytical structure was:
+
+```text
+Food Consumption Dataset
+        │
+        ├── Year
+        ├── Country
+        ├── Area
+        ├── Region
+        ├── Income Group
+        ├── Food Category
+        ├── Area Code
+        └── Consumption
+```
+
+The model allows the consumption measure to be analyzed from multiple dimensions.
+
+---
+
+# 📐 4. DAX Measures
+
+DAX was used to create calculated measures for the dashboard.
+
+## Total Food Consumption
+
+```DAX
+Total Food Consumption =
+SUM('Food Consumption'[Consumption])
+```
+
+This measure calculates the total consumption represented in the current filter context.
+
+---
+
+## Average Food Consumption
+
+```DAX
+Average Food Consumption =
+AVERAGE('Food Consumption'[Consumption])
+```
+
+This measure calculates the average consumption value.
+
+The dashboard displays an average value of approximately:
+
+```text
+377.26K
+```
+
+depending on the selected filter context.
+
+---
+
+## Count of Food Categories
+
+```DAX
+Count of Food Categories =
+DISTINCTCOUNT('Food Consumption'[Food Category])
+```
+
+The dashboard shows:
+
+```text
+107
+```
+
+food categories in the relevant dataset/filter context.
+
+---
+
+## Count of Countries
+
+```DAX
+Count of Countries =
+DISTINCTCOUNT('Food Consumption'[Country])
+```
+
+This measure counts unique countries.
+
+---
+
+## Maximum Consumption
+
+```DAX
+Maximum Consumption =
+MAX('Food Consumption'[Consumption])
+```
+
+This identifies the maximum individual consumption value in the current filter context.
+
+A dashboard KPI from the project shows a maximum value of approximately:
+
+```text
+92.03M
+```
+
+---
+
+## Minimum Consumption
+
+```DAX
+Minimum Consumption =
+MIN('Food Consumption'[Consumption])
+```
+
+This identifies the minimum consumption value in the current filter context.
+
+---
+
+## Consumption by Year
+
+```DAX
+Total Consumption by Year =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Year]
+    )
+)
+```
+
+This measure can be used for year-based trend analysis.
+
+---
+
+## Consumption by Region
+
+```DAX
+Total Consumption by Region =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Region]
+    )
+)
+```
+
+This allows consumption to be analyzed by region.
+
+---
+
+## Consumption by Income Group
+
+```DAX
+Total Consumption by Income Group =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Income Group]
+    )
+)
+```
+
+This measure allows comparison between income groups.
+
+---
+
+## Consumption by Area
+
+```DAX
+Total Consumption by Area =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Area]
+    )
+)
+```
+
+This measure can be used for area-level comparison.
+
+---
+
+## Selected Year
+
+```DAX
+Selected Year =
+SELECTEDVALUE(
+    'Food Consumption'[Year],
+    "All Years"
+)
+```
+
+This can be used to dynamically display the selected year in a card or title.
+
+---
+
+## Selected Country
+
+```DAX
+Selected Country =
+SELECTEDVALUE(
+    'Food Consumption'[Country],
+    "All Countries"
+)
+```
+
+This can be used to display the currently selected country.
+
+---
+
+## Selected Income Group
+
+```DAX
+Selected Income Group =
+SELECTEDVALUE(
+    'Food Consumption'[Income Group],
+    "All Income Groups"
+)
+```
+
+This can be used for dynamic titles or KPI displays.
+
+---
+
+# 🎛️ 5. Interactive Slicers
+
+The dashboard uses slicers to make the analysis interactive.
+
+## Year Slicer
+
+The Year slicer allows users to select a particular year.
+
+Example:
+
+```text
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+...
+2021
+```
+
+Selecting a year dynamically changes the connected visuals.
+
+---
+
+## Income Group Slicer
+
+The Income Group slicer contains classifications such as:
+
+```text
+High income
+Low income
+Lower middle income
+Upper middle income
+```
+
+This allows users to analyze food consumption based on economic classification.
+
+---
+
+## Area Slicer
+
+The Area slicer allows users to select specific countries/areas.
+
+Examples visible in the dashboard include:
+
+```text
+Australia
+Australia and New Zealand
+Austria
+Azerbaijan
+Bahamas
+Bangladesh
+...
+```
+
+---
+
+# 📊 DASHBOARD PAGE 1 — Global Food Consumption Analysis
+
+## Dashboard Purpose
+
+The first dashboard page provides a high-level introduction to the project and explains the analytical objective.
+
+The page focuses on:
+
+```text
+Global Food Consumption
+        ↓
+Countries
+        ↓
+Regions
+        ↓
+Income Groups
+        ↓
+Time
+```
+
+The page introduces the project as an interactive BI solution for understanding global food consumption patterns.
+
+---
+
+# 📊 DASHBOARD PAGE 2 — Regional & Income Analysis
+
+The second dashboard page focuses on geographical and income-group analysis.
+
+## Filters
+
+The page includes:
+
+- Year
+- Income Group
+- Area
+
+These slicers allow users to dynamically change the analytical context.
+
+---
+
+## KPI — Maximum Consuming Country
+
+A KPI card is used to highlight the maximum consumption value.
+
+Displayed value:
+
+```text
+92.03M
+```
+
+This provides a quick high-level indicator of the maximum consumption in the current context.
+
+---
+
+## Visual — Count of Country by Region
+
+A pie chart is used to analyze the distribution of countries across regions.
+
+The visual includes regional categories such as:
+
+```text
+Europe
+Latin America
+East Asia
+Middle East
+North America
+Sub-Saharan Africa
+```
+
+### Purpose
+
+To understand how countries are distributed across geographical regions.
+
+---
+
+## Visual — Count of Country by Income Group and Region
+
+A stacked bar chart compares country counts by income group and region.
+
+It combines:
+
+```text
+Income Group
++
+Region
+```
+
+### Purpose
+
+To identify how different income groups are distributed geographically.
+
+---
+
+# 📊 DASHBOARD PAGE 3 — Consumption Trends & Area Analysis
+
+The third page focuses more strongly on consumption values and time-series analysis.
+
+---
+
+## Visual — Total Consumption by Area and Income Group
+
+A horizontal stacked bar chart compares total consumption across different areas.
+
+The chart uses:
+
+```text
+Area
++
+Income Group
++
+Total Consumption
+```
+
+### Purpose
+
+To identify areas with high consumption and understand the contribution of different income groups.
+
+---
+
+## Visual — Total Consumption by Year
+
+A line chart is used to analyze total consumption over time.
+
+### X-axis
+
+```text
+Year
+```
+
+### Y-axis
+
+```text
+Total Consumption
+```
+
+### Purpose
+
+To identify long-term changes and trends in global food consumption.
+
+The project dashboard shows an overall upward movement in total consumption during the analyzed period.
+
+---
+
+## Visual — Detailed Area-Level Consumption
+
+A detailed area-level visualization compares consumption across many geographical areas.
+
+The visual combines:
+
+```text
+Area
++
+Income Group
++
+Total Consumption
+```
+
+This provides a detailed view of how consumption is distributed across countries/areas.
+
+---
+
+# 📊 DASHBOARD PAGE 4 — Global Food Consumption Overview
+
+The fourth dashboard page provides another high-level analytical view.
+
+The dashboard contains several KPI cards and visuals.
+
+---
+
+## KPI — Total Food Consumption
+
+```text
+Total Food Consumption
+6.86bn
+```
+
+This KPI provides the total food consumption in the selected analytical context.
+
+---
+
+## KPI — Categories
+
+```text
+Categories
+107
+```
+
+This represents the count of food categories.
+
+---
+
+## KPI — Country
+
+The dashboard displays the currently selected country.
+
+Example visible selection:
+
+```text
+Afghanistan
+```
+
+---
+
+## KPI — Year
+
+The dashboard displays the selected year.
+
+Example visible selection:
+
+```text
+2016
+```
+
+---
+
+## Visual — Geographic Food Consumption Map
+
+A map visual is used to show geographical distribution.
+
+The map includes areas across:
+
+```text
+North America
+South America
+Europe
+Africa
+Asia
+Australia
+```
+
+The geographic visual allows users to identify where the analyzed areas are located and compare geographical distribution.
+
+---
+
+## Visual — Food Category Consumption Table
+
+A table displays food categories together with their total consumption.
+
+Example categories visible include:
+
+```text
+Alcoholic Beverages
+Animal fats
+Animal Products
+Apples and products
+...
+```
+
+The table provides a detailed category-level breakdown.
+
+---
+
+## KPI — Average Food Consumption
+
+The dashboard includes an average consumption KPI.
+
+Displayed value:
+
+```text
+377.26K
+```
+
+This represents the average consumption value within the current analytical context.
+
+---
+
+## Visual — Count of Country by Income Group
+
+A bar chart compares the number of countries across income groups.
+
+The visual helps identify how countries are distributed between:
+
+```text
+High income
+Upper middle income
+Lower middle income
+Low income
+```
+
+---
+
+# 🗺️ Geographic Analysis
+
+The project uses a map visual to analyze global geographical distribution.
+
+The map provides a visual representation of areas across different continents.
+
+This makes it easier to answer:
+
+```text
+Where is the data concentrated?
+
+Which geographical areas are represented?
+
+How are countries distributed globally?
+```
+
+Geographical analysis is particularly useful because the project is focused on global consumption rather than a single country or region.
+
+---
+
+# 📈 Time-Series Analysis
+
+The project includes yearly analysis to understand how consumption changes over time.
+
+The line chart uses:
+
+```text
+X-axis = Year
+Y-axis = Total Consumption
+```
+
+This enables users to identify:
+
+- Overall growth
+- Long-term trends
+- Year-to-year changes
+- Periods of increase/decrease
+
+The dashboard indicates an overall increasing trend in total consumption across the analyzed period.
+
+---
+
+# 💰 Income Group Analysis
+
+Income group is one of the important analytical dimensions of the project.
+
+The dashboard compares:
+
+```text
+High income
+Low income
+Lower middle income
+Upper middle income
+```
+
+This enables analysis of the relationship between economic classification and food consumption.
+
+The income-group analysis is used in:
+
+- Slicers
+- Stacked bar charts
+- Country count analysis
+- Area consumption analysis
+- Comparative reporting
+
+---
+
+# 🍎 Food Category Analysis
+
+The fourth dashboard page includes a food-category table.
+
+The table can be used to compare total consumption across different food categories.
+
+Example categories include:
+
+```text
+Alcoholic Beverages
+Animal fats
+Animal Products
+Apples and products
+...
+```
+
+This allows users to move from high-level country/region analysis into detailed food-category analysis.
+
+---
+
+# 📌 Key KPIs
+
+The dashboard contains important KPI indicators such as:
+
+```text
+Total Food Consumption
+Average Food Consumption
+Maximum Consumption
+Number of Food Categories
+Number of Countries
+Selected Year
+Selected Country
+```
+
+These KPIs provide an immediate summary before users investigate the detailed charts.
+
+---
+
+# 🔍 Key Insights
+
+## 1. Global consumption changes over time
+
+The yearly trend indicates an overall increase in total food consumption across the analyzed period.
+
+---
+
+## 2. Consumption is geographically uneven
+
+Different countries and areas contribute different amounts to total consumption.
+
+Some areas represent significantly larger portions of total consumption than others.
+
+---
+
+## 3. Income groups show different patterns
+
+Food consumption varies between income classifications.
+
+The dashboard enables users to compare high-income, middle-income, and low-income groups.
+
+---
+
+## 4. Regional distribution is different
+
+The country-count analysis shows that countries are not evenly distributed among regions.
+
+This is important when interpreting regional comparisons.
+
+---
+
+## 5. Food categories contribute differently
+
+The category-level table demonstrates that consumption is distributed differently across food categories.
+
+This allows more detailed category-level analysis.
+
+---
+
+## 6. Consumption is concentrated in selected areas
+
+The detailed area-level visualization shows that a smaller group of areas contributes a substantial portion of total consumption.
+
+---
+
+# 🧠 Business Intelligence Questions Answered
+
+The dashboard can answer:
+
+```text
+1. What is the total food consumption?
+
+2. Which country/area has the highest consumption?
+
+3. Which regions contain the most countries?
+
+4. How is consumption distributed across regions?
+
+5. How does consumption vary by income group?
+
+6. Which areas have the highest total consumption?
+
+7. How has consumption changed over time?
+
+8. Which food categories contribute to consumption?
+
+9. How many food categories are present?
+
+10. How many countries are represented?
+
+11. What is the average consumption?
+
+12. What changes when a particular year is selected?
+
+13. What changes when a particular income group is selected?
+
+14. What changes when a particular area/country is selected?
+```
+
+---
+
+# 🎨 Dashboard Design
+
+The dashboard uses a food-related visual theme to maintain consistency with the subject of the project.
+
+Design elements include:
+
+```text
+Food-themed background
+Transparent panels
+Rounded cards
+KPI cards
+Interactive slicers
+Charts
+Tables
+Map visualization
+Consistent typography
+```
+
+The design goal was to make the dashboard both **analytically useful and visually engaging**.
+
+---
+
+# 🔧 Power BI Development Process
+
+The dashboard was developed using the following sequence:
+
+```text
+STEP 1
+Import Dataset
+        ↓
+STEP 2
+Open Power Query
+        ↓
+STEP 3
+Review & Transform Data
+        ↓
+STEP 4
+Set Correct Data Types
+        ↓
+STEP 5
+Load Data into Model
+        ↓
+STEP 6
+Create DAX Measures
+        ↓
+STEP 7
+Create KPI Cards
+        ↓
+STEP 8
+Create Slicers
+        ↓
+STEP 9
+Create Charts
+        ↓
+STEP 10
+Create Map
+        ↓
+STEP 11
+Format Dashboard
+        ↓
+STEP 12
+Test Interactive Filtering
+        ↓
+STEP 13
+Validate Results
+        ↓
+STEP 14
+Finalize Dashboard
+```
+
+---
+
+# 🧪 Validation & Quality Checks
+
+Before finalizing the dashboard, the analysis should be checked for:
+
+```text
+✔ Correct data types
+✔ Correct aggregation
+✔ Correct KPI values
+✔ Correct slicer interaction
+✔ Correct year filtering
+✔ Correct income-group filtering
+✔ Correct country/area filtering
+✔ Correct category totals
+✔ Correct chart axes
+✔ Correct labels
+✔ No unexpected blank values
+✔ Consistent formatting
+```
+
+---
+
+# 📁 Recommended GitHub Repository Structure
+
+```text
+Global-Food-Consumption-PowerBI/
+│
+├── README.md
+│
+├── Dataset/
+│   └── food_consumption_dataset.csv
+│
+├── PowerBI/
+│   └── Global_Food_Consumption_Analysis.pbix
+│
+├── Dashboard/
+│   ├── Page_1.png
+│   ├── Page_2.png
+│   ├── Page_3.png
+│   └── Page_4.png
+│
+├── Documentation/
+│   └── Project_Documentation.pdf
+│
+└── Screenshots/
+    └── Dashboard_Preview.png
+```
+
+---
+
+# 💻 Example DAX Code Collection
+
+Copy these measures into Power BI and adjust the table/column names if necessary.
+
+## Total Consumption
+
+```DAX
+Total Food Consumption =
+SUM('Food Consumption'[Consumption])
+```
+
+## Average Consumption
+
+```DAX
+Average Food Consumption =
+AVERAGE('Food Consumption'[Consumption])
+```
+
+## Maximum Consumption
+
+```DAX
+Maximum Consumption =
+MAX('Food Consumption'[Consumption])
+```
+
+## Minimum Consumption
+
+```DAX
+Minimum Consumption =
+MIN('Food Consumption'[Consumption])
+```
+
+## Country Count
+
+```DAX
+Count of Countries =
+DISTINCTCOUNT('Food Consumption'[Country])
+```
+
+## Category Count
+
+```DAX
+Count of Food Categories =
+DISTINCTCOUNT('Food Consumption'[Food Category])
+```
+
+## Area Count
+
+```DAX
+Count of Areas =
+DISTINCTCOUNT('Food Consumption'[Area])
+```
+
+## Total Consumption by Year
+
+```DAX
+Total Consumption by Year =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Year]
+    )
+)
+```
+
+## Total Consumption by Region
+
+```DAX
+Total Consumption by Region =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Region]
+    )
+)
+```
+
+## Total Consumption by Income Group
+
+```DAX
+Total Consumption by Income Group =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Income Group]
+    )
+)
+```
+
+## Total Consumption by Area
+
+```DAX
+Total Consumption by Area =
+CALCULATE(
+    [Total Food Consumption],
+    ALLEXCEPT(
+        'Food Consumption',
+        'Food Consumption'[Area]
+    )
+)
+```
+
+## Selected Year
+
+```DAX
+Selected Year =
+SELECTEDVALUE(
+    'Food Consumption'[Year],
+    "All Years"
+)
+```
+
+## Selected Country
+
+```DAX
+Selected Country =
+SELECTEDVALUE(
+    'Food Consumption'[Country],
+    "All Countries"
+)
+```
+
+## Selected Income Group
+
+```DAX
+Selected Income Group =
+SELECTEDVALUE(
+    'Food Consumption'[Income Group],
+    "All Income Groups"
+)
+```
+
+---
+
+# 📊 Recommended Visual-to-Measure Mapping
+
+| Dashboard Requirement | Power BI Visual | Field / Measure |
+|---|---|---|
+| Total Food Consumption | Card | Total Food Consumption |
+| Average Consumption | Card | Average Food Consumption |
+| Maximum Consumption | Card | Maximum Consumption |
+| Category Count | Card | Count of Food Categories |
+| Country Count | Card | Count of Countries |
+| Selected Year | Card/Slicer | Year |
+| Selected Country | Card/Slicer | Country |
+| Regional Country Distribution | Pie/Donut | Region + Country Count |
+| Income Group Distribution | Bar Chart | Income Group + Country Count |
+| Area Consumption | Stacked Bar | Area + Total Consumption |
+| Income Contribution | Stacked Bar | Income Group + Consumption |
+| Yearly Trend | Line Chart | Year + Total Consumption |
+| Global Distribution | Map | Area/Country + Consumption |
+| Category Analysis | Table | Food Category + Total Consumption |
+
+---
+
+# 🚀 Project Outcome
+
+The final outcome is an interactive **Global Food Consumption Intelligence Dashboard** that converts raw food-consumption data into a structured Business Intelligence solution.
+
+The project combines:
+
+```text
+Data Preparation
++
+Data Transformation
++
+Data Modeling
++
+DAX
++
+KPI Development
++
+Interactive Filtering
++
+Geographical Analysis
++
+Time-Series Analysis
++
+Category Analysis
++
+Data Visualization
++
+Business Intelligence
+```
+
+The dashboard allows users to move from a high-level overview to detailed analysis by using slicers, KPIs, maps, tables, and charts.
+
+---
+
+# 💼 Resume Description
+
+```text
+Global Food Consumption Intelligence Dashboard | Power BI
+
+Developed an interactive Power BI dashboard to analyze global food consumption across countries, regions, areas, income groups, food categories, and years. Performed data preparation and transformation using Power Query, created DAX-based measures and KPIs, and designed interactive slicers, maps, tables, stacked bar charts, pie charts, and time-series visualizations. Analyzed geographical, income-based, category-level, and year-over-year consumption patterns to convert raw data into actionable Business Intelligence insights.
+
+Technologies: Power BI, Power Query, DAX, Data Modeling, Data Visualization, Business Intelligence
+```
+
+---
+
+# 🧾 Short GitHub Repository Description
+
+```text
+Interactive Power BI dashboard analyzing global food consumption across countries, regions, income groups, food categories, and years using DAX, Power Query, data modeling, and interactive visualizations.
+```
+
+---
+
+# ⭐ Project Highlights
+
+```text
+🌍 Global Food Consumption Analysis
+📊 Interactive Power BI Dashboard
+📈 Year-over-Year Trend Analysis
+💰 Income Group Analysis
+🌎 Regional & Geographical Analysis
+🍎 Food Category Analysis
+🗺️ Interactive Map Visualization
+🎛️ Dynamic Slicers
+📌 KPI Cards
+🧮 DAX Measures
+🧹 Power Query Transformation
+📐 Data Modeling
+📊 Business Intelligence Reporting
+💡 Data Storytelling
+```
+
+---
+
+# 👨‍💻 Skills Demonstrated
+
+```text
+Microsoft Power BI
+Power Query
+DAX
+Data Analysis
+Business Intelligence
+Data Visualization
+Data Cleaning
+Data Transformation
+Data Modeling
+KPI Development
+Interactive Dashboard Design
+Time-Series Analysis
+Geographical Analysis
+Comparative Analysis
+Data Storytelling
+```
+
+---
+
+# 📌 Final Project Summary
+
+**Global Food Consumption Intelligence Dashboard** demonstrates the practical application of Power BI to convert raw global food-consumption data into an interactive analytical reporting system.
+
+The project combines **Power Query for data preparation, DAX for analytical calculations, Power BI data modeling for structured analysis, and interactive visualizations for data storytelling**.
+
+Through KPI cards, slicers, maps, tables, bar charts, pie charts, and line charts, users can analyze food consumption across **countries, regions, income groups, food categories, and years**.
+
+The final dashboard provides a centralized BI solution for exploring consumption patterns and supporting data-driven analysis.
+
+---
+
+# 🔗 Project Type
+
+```text
+Data Analytics
+Business Intelligence
+Power BI Dashboard
+Data Visualization
+Interactive Reporting
+```
+
+# 🛠️ Technologies
+
+```text
+Power BI
+Power Query
+DAX
+Data Modeling
+Data Visualization
+```
